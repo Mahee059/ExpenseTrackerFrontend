@@ -12,7 +12,7 @@ const Input = ({ value, onChange, placeholder, label, type }) => {
             <label className="text-[13px] text-slate-800">{label}</label>  
             <div className="input box relative flex items-center">  
                 <input 
-                    type={type === 'password' ? (showPassword ? 'text' : 'password') : type}
+                    type={type === "password" ? (showPassword ? "text" : "password") : type}
                     placeholder={placeholder}
                     className="w-full bg-transparent outline-none"
                     value={value}
@@ -20,23 +20,23 @@ const Input = ({ value, onChange, placeholder, label, type }) => {
                 /> 
 
                 {type === "password" && ( 
-                    
-                    <div className="absolute right-2">
-                        {showPassword ? (
-                            <FaRegEyeSlash
-                                size={22}
-                                className="text-primary cursor-pointer"
-                                onClick={toggleShowPassword}
-                            /> 
-                        ) : (
-                            <FaRegEye
-                                size={22}
-                                className="text-primary cursor-pointer"
-                                onClick={toggleShowPassword}
-                            />
+                    <>
+                        <div className="absolute right-2">
+                            {showPassword ? (
+                                <FaRegEyeSlash
+                                    size={22}
+                                    className="text-primary cursor-pointer"
+                                    onClick={toggleShowPassword}
+                                /> 
+                            ) : (
+                                <FaRegEye
+                                    size={22}
+                                    className="text-primary cursor-pointer"
+                                    onClick={toggleShowPassword}
+                                />
                             )}
-                            
-                    </div>
+                        </div>
+                    </>
                 )}
             </div>
         </div>
