@@ -1,44 +1,49 @@
 
-import React from 'react'
+import React from "react";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
 } from "react-router-dom";
-import Login from './pages/Auth/Login';
-import SignUP from './pages/Auth/SignUP';
-import Home from './pages/Dashboard/Home';
-import Income from './pages/Dashboard/Income';
-import Expense from './pages/Dashboard/Expense';
+
+import Login from "./pages/Auth/Login";
+
+import Home from "./pages/Dashboard/Home";
+import Income from "./pages/Dashboard/Income";
+import Expense from "./pages/Dashboard/Expense";
+import SignUp from "./pages/Auth/SignUP";
 
 const App = () => {
   return (
-    <div>
-      <Router>
-        <Routes>
-          <Route path="/" elelemt={<Root />} />
-          <Route path="/login" exact element={<Login />} />
-          <Route path="/signUp" exact element={<SignUP />} />
-          <Route path="/Dashboard" exact element={<Home />} />
-          <Route path="/income" exact element={<Income />} />
-          <Route path="/expense" exact element={<Expense />} />
-        </Routes>
-      </Router>
-   
-    </div>
+    <Router>
+      <Routes>
+        {/* Default route (decides where to go based on login status) */}
+        <Route path="/" element={<Root />} />
+
+        {/* Auth Pages */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+
+        {/* Dashboard Pages */}
+        <Route path="/dashboard" element={<Home />} />
+        <Route path="/income" element={<Income />} />
+        <Route path="/expense" element={<Expense />} />
+      </Routes>
+    </Router>
   );
 };
-export default App
 
-const Root = () => { 
-  //check if token exits in localStorage 
-  const isAuthenticated = !!localStorage.getItem("token"); 
-  //Redirect to dashboard if authenticate, to otherwise to login 
+export default App;
+
+// ✅ Root Redirect Logic
+const Root = () => {
+  const isAuthenticated = !!localStorage.getItem("token");
+
+  // Redirect based on authentication status
   return isAuthenticated ? (
-    <Navigate to="/dashboard" />
-
-  ) : ( 
-    < Navigate to="login"/>
+    <Navigate to="/dashboard" replace />
+  ) : (
+    <Navigate to="/login" replace />
   );
-}
+};
